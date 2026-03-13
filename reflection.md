@@ -38,14 +38,19 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 4. What did you learn about Streamlit and state?
 
 - In your own words, explain why the secret number kept changing in the original app.
+  The original app was reassigning `st.session_state.secret` on every run because it was set in the main script body without guarding for existing state. Streamlit reruns the script on every interaction, so any assignment in the global scope will re-run unless it is protected by a `if "secret" not in st.session_state` check.
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+  Streamlit reruns your entire script from top to bottom on each interaction (button click, input change, etc.). Session state is a special dictionary that lets you persist values across reruns so things like the secret number, attempt count, and score don’t reset every time the UI updates.
 - What change did you make that finally gave the game a stable secret number?
+  I wrapped the secret assignment so it only happens if `"secret"` isn’t already in `st.session_state`. That ensures the random secret is generated once per game and stays stable.
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
+  I want to keep using small, focused unit tests for edge cases (like the string-vs-int secret bug) and keep core logic separate from UI code.
 - What is one thing you would do differently next time you work with AI on a coding task?
+  I would validate AI suggestions more carefully before accepting them, especially when they touch core logic, and write a small test immediately to confirm the behavior.
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+  This project showed that AI-generated code can be a helpful starting point, but it often requires careful review and testing to ensure it matches the intended behavior. I now treat AI suggestions as hypotheses that need verification rather than as final answers.
