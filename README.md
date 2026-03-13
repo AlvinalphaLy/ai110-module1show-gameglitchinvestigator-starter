@@ -36,9 +36,7 @@ It wrote the code, ran away, and now the game is unplayable.
 
 - ✅ The game now correctly shows “Too High”/“Too Low” hints and allows winning.
 
-![Game Demo Winner](demo_screenshot.png)
-
-(If you don’t have the image file yet, you can take a screenshot while running `streamlit run app.py` and save it as `demo_screenshot.png` in this repo.)
+![Game Demo Winner](image.png)
 
 ## 🚀 Stretch Features
 
